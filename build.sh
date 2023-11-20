@@ -8,5 +8,5 @@ fi
 
 COLLECTIONS=shared=dependencies/Classreader/src
 
-odin build src -collection:$COLLECTIONS $EXTRA_FLAGS
+odin build src -out:scratch -collection:$COLLECTIONS $EXTRA_FLAGS
 
