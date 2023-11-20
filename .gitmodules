@@ -1,0 +1,3 @@
+[submodule "Classreader"]
+path = dependencies/Classreader
+url = https://github.com/FourteenBrush/Classreader
