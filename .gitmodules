@@ -4,4 +4,4 @@ url = https://github.com/FourteenBrush/Classreader
 
 [submodule "cli"]
 path = dependencies/cli
-url = https://github.com/beastmaster/cli
+url = https://github.com/beastmatser/cli
