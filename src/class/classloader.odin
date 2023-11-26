@@ -1,8 +1,10 @@
 package classloader
 
-import reader "shared:common"
+import "reader:reader"
 
 ClassLoader :: struct {
+    // FIXME: do we actually need a parent, as the other classloaders
+    // will be represented by java code
     parent: ^ClassLoader,
     loaded_classes: [dynamic]reader.ClassFile,
 }

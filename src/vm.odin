@@ -12,6 +12,10 @@ vm_new :: proc() -> VM {
     }
 }
 
+vm_bootstrap_runtime :: proc(using vm:  ^VM) -> (ok: bool) {
+    return class.load_bootstrap_classes(&bootstrap_classloader)
+}
+
 vm_destroy :: proc(using vm: VM) {
     class.classloader_destroy(bootstrap_classloader) 
 }
