@@ -17,7 +17,7 @@ load_bootstrap_classes :: proc(using loader: ^ClassLoader) -> (ok: bool) {
 load_bootstrap_class :: proc(
     info: os.File_Info, 
     in_err: os.Errno, 
-    classes_out: rawptr
+    classes_out: rawptr,
 ) -> (
     err: os.Errno, 
     skip_dir: bool,
@@ -25,7 +25,7 @@ load_bootstrap_class :: proc(
     if info.is_dir do return // skip
     data, read_successful := os.read_entire_file(info.fullpath)
     if !read_successful {
-        fmt.eprintf("Error reading file %v\n", info.fullpath)
+        fmt.eprintln("Error reading file", info.fullpath)
         return err, true // stop further reading
     }
 

@@ -12,7 +12,7 @@ vm_new :: proc() -> VM {
     }
 }
 
-vm_bootstrap_runtime :: proc(using vm:  ^VM) -> (ok: bool) {
+vm_bootstrap_runtime :: proc(using vm: ^VM) -> (ok: bool) {
     return class.load_bootstrap_classes(&bootstrap_classloader)
 }
 

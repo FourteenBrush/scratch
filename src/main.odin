@@ -2,7 +2,6 @@ package scratch
 
 import "core:fmt"
 import "class"
-import "reader:reader"
 import "cli:cli"
 
 main :: proc() {
