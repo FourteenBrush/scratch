@@ -12,7 +12,7 @@ COLLECTIONS=$(printf -- "-collection:%s " "${COLLECTION_SOURCES[@]}")
 case $1 in
     run)
         args="${@:1}"
-        args[0] = $OUT_NAME
+        args[0]=$OUT_NAME
         odin run src $COLLECTIONS $FLAGS -- ${args[@]}
         ;;
     check)
