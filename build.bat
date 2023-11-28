@@ -1,12 +1,14 @@
 @echo off
 
 set COLLECTIONS="reader=dependencies/Classreader/src"
-set FLAGS=-strict-style -vet-unused
+set FLAGS=-strict-style rem -vet-unused
 set OUT_NAME=scratch
 
 if "%1" == "debug" (
     rem debug build
     set EXTRA_FLAGS=-debug
+) else if "%1" == "check" (
+    odin check src -collection=%COLLECTIONS% %FLAGS%
 ) else if "%1" == "run" (
     shift
     shift

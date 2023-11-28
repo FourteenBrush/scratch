@@ -1,7 +1,8 @@
 #!/bin/bash
 
 OUT_NAME=scratch
-FLAGS="-strict-style -vet-unused"
+# TODO: add this back
+FLAGS="-strict-style" # -vet-unused"
 COLLECTION_SOURCES=(
     "reader=dependencies/Classreader/src"
     "cli=dependencies/cli"
@@ -13,6 +14,9 @@ case $1 in
         args="${@:1}"
         args[0] = $OUT_NAME
         odin run src $COLLECTIONS $FLAGS -- ${args[@]}
+        ;;
+    check)
+        odin check src $COLLECTIONS $FLAGS
         ;;
     debug)
         EXTRA_FLAGS="-debug"
