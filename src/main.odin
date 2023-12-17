@@ -12,13 +12,10 @@ main :: proc() {
 
         defer {
             if len(alloc.allocation_map) > 0 {
-                size := 0
                 fmt.eprintf("=== %v allocations not freed: ===\n", len(alloc.allocation_map))
                 for _, entry in alloc.allocation_map {
                     fmt.eprintf("- %v bytes @ %v\n", entry.size, entry.location)
-                    size += entry.size
                 }
-                fmt.eprintln("Allocated", size / 1024, "KB")
             }
             if len(alloc.bad_free_array) > 0 {
                 fmt.eprintf("=== incorrect frees: ===\n", len(alloc.bad_free_array))
@@ -44,6 +41,5 @@ main :: proc() {
     defer vm_destroy(vm)
 
     vm_bootstrap_runtime(&vm)
-    fmt.println("a")
-    fmt.println(len(vm.bootstrap_classloader.loaded_classes))
+    fmt.println(len(vm.bootstrap_classloader.loaded_classes), "loaded classes")
 }
