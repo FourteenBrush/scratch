@@ -28,6 +28,7 @@ stack_pop :: proc(using stack: ^CallStack) -> StackFrame {
 
 stack_push :: proc(using stack: ^CallStack, frame: StackFrame) {
     if len(frames) > MAX_STACK_SIZE {
+        panic("java.lang.StackOverflowError")
         // TODO: throw StackOverflow exception
     }
     append(&frames, frame)

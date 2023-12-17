@@ -6,7 +6,7 @@
     "enable_snippets": true,
     "checker_args": "-strict-style -vet-unused",
     "collections": [
-        { "name": "reader", "path": "dependencies/Classreader/src" },
+        { "name": "classreader", "path": "dependencies/Classreader/src" },
         { "name": "cli", "path": "dependencies/cli" }
     ]
 }
