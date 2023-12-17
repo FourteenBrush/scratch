@@ -1,9 +1,7 @@
 package scratch
 
 import "core:mem"
-import "core:os"
 import "core:fmt"
-import "class"
 import "cli:cli"
 
 main :: proc() {
@@ -14,10 +12,13 @@ main :: proc() {
 
         defer {
             if len(alloc.allocation_map) > 0 {
+                size := 0
                 fmt.eprintf("=== %v allocations not freed: ===\n", len(alloc.allocation_map))
                 for _, entry in alloc.allocation_map {
                     fmt.eprintf("- %v bytes @ %v\n", entry.size, entry.location)
+                    size += entry.size
                 }
+                fmt.eprintln("Allocated", size / 1024, "KB")
             }
             if len(alloc.bad_free_array) > 0 {
                 fmt.eprintf("=== incorrect frees: ===\n", len(alloc.bad_free_array))
@@ -37,11 +38,12 @@ main :: proc() {
         help = "Some help message",
     })
 
-    cli.run(&app, os.args)
+    cli.run(&app)
 
     vm := vm_new()
     defer vm_destroy(vm)
 
-    class.load_bootstrap_classes(&vm.bootstrap_classloader)
+    vm_bootstrap_runtime(&vm)
+    fmt.println("a")
     fmt.println(len(vm.bootstrap_classloader.loaded_classes))
 }
