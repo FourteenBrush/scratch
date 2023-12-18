@@ -13,6 +13,8 @@ CLASSES_ARENA_SIZE :: 8 * mem.Megabyte
 
 ClassLoader :: struct {
     classes_arena: ^mem.Arena,
+    // An allocator in which ClassFiles are allocated
+    // together with their file that's kept into memory
     classes_allocator: mem.Allocator,
     loaded_classes: [dynamic]reader.ClassFile,
 }

@@ -1,8 +1,12 @@
 package scratch
 
+import "core:os"
 import "core:mem"
 import "core:fmt"
-import "cli:cli"
+import "core:log"
+import "cli"
+
+// TODO: get cli dependency out of here
 
 main :: proc() {
     when ODIN_DEBUG {
@@ -27,19 +31,15 @@ main :: proc() {
         }
     }
 
-    app := cli.App {}
-    app.action = proc(app: cli.App, manager: cli.Manager) {}
-    cli.add_flag(&app, &cli.Flag {
-        short = "-h",
-        long = "--help",
-        help = "Some help message",
-    })
+    opt := log.Default_Console_Logger_Opts - {.Line, .Short_File_Path}
+    context.logger = log.create_console_logger(opt = opt)
+    defer log.destroy_console_logger(context.logger)
 
-    cli.run(&app)
+    cli.parse_options(os.args)
 
     vm := vm_new()
     defer vm_destroy(vm)
 
     vm_bootstrap_runtime(&vm)
-    fmt.println(len(vm.bootstrap_classloader.loaded_classes), "loaded classes")
+    vm_start(&vm)
 }

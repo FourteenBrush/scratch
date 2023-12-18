@@ -20,6 +20,7 @@ callstack_destroy :: proc(using stack: CallStack) {
         delete(frame.locals)
         delete(frame.operand_stack)
     }
+    delete(frames)
 }
 
 stack_pop :: proc(using stack: ^CallStack) -> StackFrame {
